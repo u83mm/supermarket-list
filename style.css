@@ -19,6 +19,12 @@ body.dark-mode { background-color: #121212; color: #e0e0e0; }
     width: 100%;
     max-width: 400px;
 }
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 body.dark-mode .container { background-color: #1e1e1e; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
 
 h1 {
