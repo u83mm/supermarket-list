@@ -1,0 +1,74 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('shopping-form');
+    const input = document.getElementById('product-input');
+    const list = document.getElementById('shopping-list');
+
+    // Cargar datos de localStorage
+    let products = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+    const saveToLocalStorage = () => {
+        localStorage.setItem('shoppingList', JSON.stringify(products));
+    };
+
+    const render = () => {
+        list.innerHTML = '';
+        products.forEach(product => {
+            const li = document.createElement('li');
+            if (product.completed) li.classList.add('completed');
+            li.dataset.id = product.id;
+
+            const span = document.createElement('span');
+            span.textContent = product.text;
+            span.className = 'product-text';
+
+            const delBtn = document.createElement('button');
+            delBtn.textContent = 'Eliminar';
+            delBtn.className = 'delete-btn';
+
+            li.appendChild(span);
+            li.appendChild(delBtn);
+            list.appendChild(li);
+        });
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (text) {
+            products.push({
+                id: Date.now(),
+                text: text,
+                completed: false
+            });
+            input.value = '';
+            saveToLocalStorage();
+            render();
+        }
+    });
+
+    list.addEventListener('click', (e) => {
+        const li = e.target.closest('li');
+        if (!li) return;
+
+        const id = parseInt(li.dataset.id);
+
+        if (e.target.classList.contains('delete-btn')) {
+            // Eliminar producto
+            products = products.filter(p => p.id !== id);
+        } else {
+            // Marcar como comprado/no comprado
+            products = products.map(p => {
+                if (p.id === id) {
+                    return { ...p, completed: !p.completed };
+                }
+                return p;
+            });
+        }
+
+        saveToLocalStorage();
+        render();
+    });
+
+    // Renderizado inicial
+    render();
+});
