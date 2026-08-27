@@ -2,9 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('shopping-form');
     const input = document.getElementById('product-input');
     const list = document.getElementById('shopping-list');
+    const themeToggle = document.getElementById('theme-toggle');
 
     // Cargar datos de localStorage
     let products = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+    // Manejo del tema
+    const loadTheme = () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    };
 
     const saveToLocalStorage = () => {
         localStorage.setItem('shoppingList', JSON.stringify(products));
@@ -69,6 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
         render();
     });
 
+    // Event listener para el cambio de tema
+    themeToggle.addEventListener('click', () => {
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+        if (isDarkMode) {
+            localStorage.setItem('theme', 'dark');
+            themeToggle.textContent = '☀️'; // Sol para indicar modo claro
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeToggle.textContent = '🌙'; // Luna para indicar modo oscuro
+        }
+    });
+
     // Renderizado inicial
     render();
+    loadTheme();
 });
