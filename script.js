@@ -93,3 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
     loadTheme();
 });
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.error('SW registration failed:', err));
+  });
+}
+const updateOfflineStatus = () => {
+  document.body.classList.toggle('offline', !navigator.onLine);
+};
+window.addEventListener('online', updateOfflineStatus);
+window.addEventListener('offline', updateOfflineStatus);
