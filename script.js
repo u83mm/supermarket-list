@@ -35,15 +35,20 @@ document.addEventListener('DOMContentLoaded', () => {
             span.textContent = product.text;
             span.className = 'product-text';
 
+            const editBtn = document.createElement('button');
+            editBtn.textContent = 'Editar';
+            editBtn.className = 'edit-btn';
+
             const delBtn = document.createElement('button');
             delBtn.textContent = 'Eliminar';
             delBtn.className = 'delete-btn';
 
             li.appendChild(span);
+            li.appendChild(editBtn);
             li.appendChild(delBtn);
             list.appendChild(li);
         });
-    };
+   };
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -69,6 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('delete-btn')) {
             // Eliminar producto
             products = products.filter(p => p.id !== id);
+        } else if (e.target.classList.contains('edit-btn')) {
+            // Editar producto
+            const product = products.find(p => p.id === id);
+            const newText = prompt('Editar producto:', product.text);
+            if (newText !== null && newText.trim() !== '') {
+                product.text = newText.trim();
+            }
         } else {
             // Marcar como comprado/no comprado
             products = products.map(p => {
