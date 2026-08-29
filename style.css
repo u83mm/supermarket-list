@@ -111,6 +111,7 @@ body.dark-mode li.completed span { color: #666; } /* Lighter gray for completed 
     font-size: 0.8rem;
 }
 body.dark-mode .delete-btn { background-color: #cf6666; } /* Softer red for dark mode */
+body.dark-mode .delete-btn:hover { background-color: #cc0000; }
 
 .delete-btn:hover {
     background-color: #cc0000;
