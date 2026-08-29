@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             actions.className = 'actions';
 
             const editBtn = document.createElement('button');
-            editBtn.textContent = 'Editar';
+            editBtn.textContent = '✏️';
             editBtn.className = 'edit-btn';
 
             const delBtn = document.createElement('button');
-            delBtn.textContent = 'Eliminar';
+            delBtn.textContent = '🗑️';
             delBtn.className = 'delete-btn';
 
             actions.appendChild(editBtn);

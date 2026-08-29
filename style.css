@@ -110,8 +110,19 @@ body.dark-mode li.completed span { color: #666; } /* Lighter gray for completed 
     cursor: pointer;
     font-size: 0.8rem;
 }
+.edit-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.edit-btn:hover { background-color: #1557b0; }
 body.dark-mode .delete-btn { background-color: #cf6666; } /* Softer red for dark mode */
 body.dark-mode .delete-btn:hover { background-color: #cc0000; }
+body.dark-mode .edit-btn { background-color: #bb86fc; color: #121212; }
 
 .delete-btn:hover {
     background-color: #cc0000;
