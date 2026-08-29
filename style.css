@@ -116,3 +116,8 @@ body.dark-mode .delete-btn:hover { background-color: #cc0000; }
 .delete-btn:hover {
     background-color: #cc0000;
 }
+
+.actions {
+    display: flex;
+    gap: 8px;
+}

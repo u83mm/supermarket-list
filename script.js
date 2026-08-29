@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
             span.textContent = product.text;
             span.className = 'product-text';
 
+            const actions = document.createElement('div');
+            actions.className = 'actions';
+
             const editBtn = document.createElement('button');
             editBtn.textContent = 'Editar';
             editBtn.className = 'edit-btn';
@@ -43,9 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
             delBtn.textContent = 'Eliminar';
             delBtn.className = 'delete-btn';
 
+            actions.appendChild(editBtn);
+            actions.appendChild(delBtn);
+
             li.appendChild(span);
-            li.appendChild(editBtn);
-            li.appendChild(delBtn);
+            li.appendChild(actions);
             list.appendChild(li);
         });
    };
