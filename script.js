@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: text,
                 completed: false
             });
+            products.sort((a, b) => a.text.localeCompare(b.text));
             input.value = '';
             saveToLocalStorage();
             render();
