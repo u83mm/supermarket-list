@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const render = () => {
         list.innerHTML = '';
+        products.sort((a, b) => {
+            if (a.completed !== b.completed) {
+                return a.completed ? 1 : -1;
+            }
+            return a.text.localeCompare(b.text);
+        });
         products.forEach(product => {
             const li = document.createElement('li');
             if (product.completed) li.classList.add('completed');
@@ -48,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 text: text,
                 completed: false
             });
-            products.sort((a, b) => a.text.localeCompare(b.text));
             input.value = '';
             saveToLocalStorage();
             render();
