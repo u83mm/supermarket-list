@@ -28,6 +28,7 @@ body.dark-mode { background-color: #121212; color: #e0e0e0; }
     z-index: 9; /* Asegura que esté por encima del contenido desplazable (ul) pero debajo de elementos críticos si los hubiera */
     background-color: inherit; /* Hereda el color de fondo del contenedor principal para evitar saltos visuales */
 }
+
 body.dark-mode .sticky-top-wrapper { background-color: #1e1e1e; }
 
 .app-header {
@@ -51,9 +52,7 @@ body.dark-mode h1 { color: #bb86fc; } /* Adjust title color for dark mode */
 
 form {
     display: flex;
-    gap: 10px;
-    flex-shrink: 0; /* Asegura que el formulario no se encoja */
-    z-index: 10; /* Asegura que esté por encima de los elementos desplazables */
+    gap: 10px;   
     padding-bottom: 1.5rem;
 }
 
@@ -157,4 +156,18 @@ body.dark-mode .edit-btn { background-color: #bb86fc; color: #121212; }
 .actions {
     display: flex;
     gap: 8px;
+}
+
+@media (max-width: 400px) {
+    .app-header {
+        flex-direction: column; /* Apila los elementos en pantallas pequeñas */       
+        gap: 10px; /* Espacio entre el título y el botón de tema */
+        padding-bottom: 0.5rem;
+    }
+
+    h1 { 
+        font-size: 1.5rem; /* Reduce ligeramente el tamaño del título en móvil */
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
