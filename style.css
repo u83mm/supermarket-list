@@ -14,6 +14,8 @@ body.dark-mode { background-color: #121212; color: #e0e0e0; }
 .container {
     background-color: white;
     padding: 2rem;
+    display: flex;
+    flex-direction: column; /* Organiza los elementos verticalmente */
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -24,21 +26,33 @@ body.dark-mode { background-color: #121212; color: #e0e0e0; }
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky; /* Hace que el header se quede fijo al hacer scroll */
+    top: 0; /* Lo fija en la parte superior del contenedor padre (.container) */
+    z-index: 10; /* Asegura que esté por encima de los elementos desplazables */
 }
 body.dark-mode .container { background-color: #1e1e1e; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
+body.dark-mode .app-header { background-color: #1e1e1e; } /* Coincide con el contenedor en modo oscuro */
 
 h1 {
     text-align: center;
     color: #1a73e8;
     margin-top: 0;
+    /* Asegura que el título no se desplace si está dentro de un contenedor scrollable */
+    flex-shrink: 0; 
 }
 body.dark-mode h1 { color: #bb86fc; } /* Adjust title color for dark mode */
 
 form {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    position: sticky; /* Hace que el formulario se quede fijo al hacer scroll */
+    top: 64px; /* Ajuste fino basado en la altura real del header + padding */
+    flex-shrink: 0; /* Asegura que el formulario no se encoja */
+    z-index: 10; /* Asegura que esté por encima de los elementos desplazables */
+    padding-bottom: 1.5rem;
 }
+
+body.dark-mode form { background-color: #1e1e1e; } /* Coincide con el contenedor en modo oscuro */
 
 input[type="text"] {
     flex: 1;
@@ -76,6 +90,13 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    /* Permite que la lista ocupe el espacio vertical restante y sea scrollable */
+    flex-grow: 1; /* Permite que la lista ocupe el espacio vertical restante */
+    overflow-y: auto; /* Habilita el desplazamiento vertical para la lista */
+}
+
+.container {
+    /* Asegura que el contenedor tenga una altura máxima definida si es necesario, aunque flexbox debería manejarlo. */
 }
 body.dark-mode ul { color: #e0e0e0; } /* Ensure list text is visible */
 
