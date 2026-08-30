@@ -42,11 +42,9 @@ body.dark-mode form { background-color: transparent; } /* Asegura que el formula
 
 h1 {
     text-align: center;
-    color: #1a73e8;
-    margin-top: 0;
+    color: #1a73e8;   
     padding-top: 1rem; /* Añade algo de espacio superior para separación visual */
-    padding-bottom: 1rem;
-    width: 100%; /* Ocupa todo el ancho del wrapper */
+    padding-bottom: 1rem;    
     flex-shrink: 0; 
 }
 body.dark-mode h1 { color: #bb86fc; } /* Adjust title color for dark mode */
