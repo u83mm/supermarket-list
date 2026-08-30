@@ -22,33 +22,37 @@ body.dark-mode { background-color: #121212; color: #e0e0e0; }
     max-width: 400px;
 }
 
+.sticky-top-wrapper {
+    position: sticky; /* Hace que el wrapper se quede fijo al hacer scroll */
+    top: 0; /* Lo fija en la parte superior de la ventana */
+    z-index: 9; /* Asegura que esté por encima del contenido desplazable (ul) pero debajo de elementos críticos si los hubiera */
+    background-color: inherit; /* Hereda el color de fondo del contenedor principal para evitar saltos visuales */
+}
+
+body.dark-mode .sticky-top-wrapper { background-color: #1e1e1e; }
+
 .app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; /* Hace que el header se quede fijo al hacer scroll */
-    top: 0; /* Lo fija en la parte superior del contenedor padre (.container) */
-    z-index: 10; /* Asegura que esté por encima de los elementos desplazables */
+    width: 100%; /* Ocupa todo el ancho del wrapper */
 }
 body.dark-mode .container { background-color: #1e1e1e; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
 body.dark-mode .app-header { background-color: #1e1e1e; } /* Coincide con el contenedor en modo oscuro */
+body.dark-mode form { background-color: transparent; } /* Asegura que el formulario no tenga fondo duplicado si está dentro del wrapper sticky */
 
 h1 {
     text-align: center;
-    color: #1a73e8;
-    margin-top: 0;
-    /* Asegura que el título no se desplace si está dentro de un contenedor scrollable */
+    color: #1a73e8;   
+    padding-top: 1rem; /* Añade algo de espacio superior para separación visual */
+    padding-bottom: 1rem;    
     flex-shrink: 0; 
 }
 body.dark-mode h1 { color: #bb86fc; } /* Adjust title color for dark mode */
 
 form {
     display: flex;
-    gap: 10px;
-    position: sticky; /* Hace que el formulario se quede fijo al hacer scroll */
-    top: 64px; /* Ajuste fino basado en la altura real del header + padding */
-    flex-shrink: 0; /* Asegura que el formulario no se encoja */
-    z-index: 10; /* Asegura que esté por encima de los elementos desplazables */
+    gap: 10px;   
     padding-bottom: 1.5rem;
 }
 
@@ -152,4 +156,18 @@ body.dark-mode .edit-btn { background-color: #bb86fc; color: #121212; }
 .actions {
     display: flex;
     gap: 8px;
+}
+
+@media (max-width: 400px) {
+    .app-header {
+        flex-direction: column; /* Apila los elementos en pantallas pequeñas */       
+        gap: 10px; /* Espacio entre el título y el botón de tema */
+        padding-bottom: 0.5rem;
+    }
+
+    h1 { 
+        font-size: 1.5rem; /* Reduce ligeramente el tamaño del título en móvil */
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
